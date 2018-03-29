@@ -83,7 +83,11 @@ def iter_item(cook, page_size, history):
             if flag:
                 return
             time.sleep(1)
-    remote.upload(file_name)
+    try:
+        remote.upload(file_name)
+        os.remove(file_name)
+    except:
+        pass
 
 
 def parse_page(content, history, f):

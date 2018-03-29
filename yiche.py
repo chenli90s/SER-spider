@@ -7,6 +7,7 @@ from headers import yiche_auth_headers as auth_headers
 from tools import exc_cmd, History, getlog
 import remote
 from datetime import datetime
+import os
 
 log = getlog('yiche')
 
@@ -64,7 +65,11 @@ def start(cookie, history):
     with open(file_name, 'w') as f:
         run_spider(cookies, history, f)
     # todo: 上传并通知
-    remote.upload(file_name)
+    try:
+        remote.upload(file_name)
+        os.remove(file_name)
+    except:
+        pass
     remote.get('易车', history.index)
     # os.remove(file_name)
     history.save()

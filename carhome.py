@@ -137,7 +137,11 @@ def iter_page(cook, page_size, history):
             if flag:
                 return
             time.sleep(4)
-    remote.upload(file_name)
+    try:
+        remote.upload(file_name)
+        os.remove(file_name)
+    except:
+        pass
 
 
 
