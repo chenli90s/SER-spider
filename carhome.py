@@ -102,7 +102,7 @@ def start(cookie, history):
     cook = eval(cook)
     load_data(cook, history)
     # todo 通知
-    remote.get("汽车之家", history.index)
+
     history.save()
     log.info("本次共抓取数据%d, 最后更新时间为"%(history.index, history.ic_endtime_tmp))
 
@@ -137,7 +137,10 @@ def iter_page(cook, page_size, history):
             if flag:
                 return
             time.sleep(4)
-    remote.upload(file_name)
+    if history.index>0:
+        remote.upload(file_name)
+        remote.get(file_name, history.index)
+
 
 
 

@@ -1,5 +1,5 @@
 import requests
-from lxml import etree
+from lxml import etree, objectify
 from optparse import OptionParser
 import sys
 import platform
@@ -64,8 +64,9 @@ def start(cookie, history):
     with open(file_name, 'w') as f:
         run_spider(cookies, history, f)
     # todo: 上传并通知
-    remote.upload(file_name)
-    remote.get('易车', history.index)
+    if history.index>0:
+        remote.upload(file_name)
+        remote.get(file_name, history.index)
     # os.remove(file_name)
     history.save()
     # print(history.index)

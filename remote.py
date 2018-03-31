@@ -6,12 +6,15 @@ from email.utils import parseaddr, formataddr
 import smtplib
 from setting import *
 import requests
+from lxml import etree, objectify
 
 class Ftp:
 
     def __init__(self):
-        self.ftp = ftplib.FTP(HOST)
+        self.ftp = ftplib.FTP()
+        self.ftp.connect(HOST, PORT)
         self.ftp.login(USERNAME, PASSWD)
+        self.ftp.cwd(PATH)
 
     def ftp_upload(self, r_file, n_file):
         '''以二进制形式上传文件'''
@@ -40,8 +43,11 @@ def send(title):
     smtpObj.sendmail('admin@chenli90s.cn', E_MAIL, msg.as_string())
 
 def get(name, count):
-    msg = '%s更新了%d'%(count, name)
-    resp = requests.get(CALLBACK_URL, params={'msg': msg})
+    # msg = '%s更新了%d'%(count, name)
+    E = objectify.ElementMaker(annotate=False)
+    anno_tree = E.request(E.key('1602d45596492ee231fa9bfeadb2e168'), E.filename(name))
+    data = etree.tostring(anno_tree).decode()
+    resp = requests.post(CALLBACK_URL, data=data)
     if resp.status_code == 200:
         return resp.text
 

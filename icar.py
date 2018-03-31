@@ -58,7 +58,7 @@ def start(cookie, history):
     history.ic_endtime_tmp = edt
     iter_item(cook, page_size, history)
     # todo 通知
-    remote.get("爱卡", history.index)
+
     history.save()
     # print(history.index)
     log.info("本次共抓取数据%d, 最后更新时间为"%(history.index, history.ic_endtime_tmp))
@@ -83,7 +83,9 @@ def iter_item(cook, page_size, history):
             if flag:
                 return
             time.sleep(1)
-    remote.upload(file_name)
+    if history.index > 0:
+        remote.upload(file_name)
+        remote.get(file_name, history.index)
 
 
 def parse_page(content, history, f):
