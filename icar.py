@@ -75,7 +75,7 @@ def get_page_size(content):
 import time
 from datetime import datetime
 def iter_item(cook, page_size, history):
-    file_name = '爱卡_%s.csv' % datetime.now().strftime(history.format)
+    file_name = '爱卡_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'wb') as f:
         for i in range(page_size):
             content = getPage(cook, i+1)

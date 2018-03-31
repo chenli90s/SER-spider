@@ -19,24 +19,30 @@ E_MAIL = [
 
 ![avatar](./yiche.PNG)
 
+cookie路径为`http://dealer.yichehuoban.cn/Home/Index`
+
 ```
-python spider.py --yiche '这里放上cook'
+python spider.py --yiche "这里放上cook"
 ```
 
 ## 汽车之家
 
 ![](./carjome.PNG)
 
+cookie路径为`https://ics.autohome.com.cn/passport/Home/Index`
+
 ```
-python spider.py --carhome '这里放上cook'
+python spider.py --carhome "这里放上cook"
 ```
 
 ## 爱卡
 
 ![](./icar.PNG)
 
+
+cookie路径为`http://amc.xcar.com.cn/index.php?r=ams/DealerHome/Index`
 ```
-python spider.py --icar '这里放上cook'
+python spider.py --icar "这里放上cook"
 ```
 
 

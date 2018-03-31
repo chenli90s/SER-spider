@@ -11,6 +11,8 @@ from datetime import datetime
 #     print(cc, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 def run_forever(func, cookie):
+    # print(cookie, '----------')
+    func(cookie)
     back = BackgroundScheduler()
     back.add_job(func, 'cron', minute="*/30", hour="7-19", args=[cookie, ] )
     # back.add_job(func, 'cron', args=[cookie, ], second="*/1")

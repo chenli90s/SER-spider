@@ -62,6 +62,7 @@ class History:
         self.ch_endtime = start
         self.ic_endtime = start
         self.format = '%Y-%m-%d %H:%M:%S'
+        self.formats = '%Y%m%d%H%M%S'
         self.yc_endtime_tmp = ''
         self.ch_endtime_tmp = ''
         self.ic_endtime_tmp = ''
