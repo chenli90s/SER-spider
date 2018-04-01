@@ -1,3 +1,12 @@
+## 环境python 3.5
+
+### 依赖
+
+```sh
+pip install -r requments.txt
+```
+
+
 ## 配置 在setting.py文件中
 ```
 # FTP
