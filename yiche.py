@@ -44,16 +44,19 @@ def construct_cmd(cookie):
     return cmd
 
 def getPage(cookie, page):
-    resp = requests.post('http://crm.yichehuoban.cn/Customer/CustomerList', data={'pageIndex': page},
+    try:
+        resp = requests.post('http://crm.yichehuoban.cn/Customer/CustomerList', data={'pageIndex': page},
                         headers=construct_header(cookie))
-    return resp.text
+        return resp.text
+    except:
+        pass
 
 
 def start(cookie, history):
     # print(cookie, '&&&&&&&')
     log.info('收集cookie信息')
     cmd = construct_cmd(cookie)
-    # print(cmd)
+    log.info(cmd)
     log.info('验证cookie信息...')
     cook = exc_cmd(cmd, 20)
     log.info('验证cookie信息成功！数据抓取中...')
@@ -67,11 +70,12 @@ def start(cookie, history):
     # todo: 上传并通知
     if history.index>0:
         remote.upload(file_name)
+        log.info("上传完成")
         remote.get(file_name, history.index)
     # os.remove(file_name)
     history.save()
     # print(history.index)
-    log.info("本次共抓取数据%d, 最后更新时间为"%(history.index, history.ic_endtime_tmp))
+    log.info("本次共抓取数据%d, 最后更新时间为%s"%(history.index, history.yc_endtime_tmp))
 
 
 def run_spider(cookies, history, f):
@@ -107,8 +111,8 @@ def parse_page(context, history, f):
         phone = name_phone[2].strip()
         times = tr.xpath('./td[4]/text()')
         datetimes = " ".join(times)
-        log.info("%s %s %s"%(name, phone, datetimes))
         if history.vild_yiche(datetimes):
+            log.info("%s %s %s" % (name, phone, datetimes))
             f.write("%s, %s, %s,\n"%(name, phone, datetimes))
             history.index +=1
         else:

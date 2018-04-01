@@ -1,4 +1,6 @@
 import ftplib
+import paramiko
+import os
 from email import encoders
 from email.header import Header
 from email.mime.text import MIMEText
@@ -29,9 +31,18 @@ class Ftp:
         self.ftp.close()
 
 def upload(path):
-    ftp = Ftp()
-    ftp.ftp_upload('', path)
-
+    sf = paramiko.Transport((HOST, PORT))
+    sf.connect(username=USERNAME, password=PASSWD)
+    sftp = paramiko.SFTPClient.from_transport(sf)
+    try:
+        # if os.path.isdir(path):  # 判断本地参数是目录还是文件
+        #     for f in os.listdir(local):  # 遍历本地目录
+        #         sftp.put(os.path.join(local + f), os.path.join(remote + f))  # 上传目录中的文件
+        # else:
+        sftp.put(path, PATH+path)  # 上传文件
+    except Exception as e:
+        print('upload exception:', e)
+    sf.close()
 
 def send(title):
     msg = MIMEText(title+'cookie失效请尽快处理', 'html', 'utf-8')

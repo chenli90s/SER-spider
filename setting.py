@@ -1,10 +1,10 @@
 
 # FTP
-HOST = '139.196.199.101'
-PORT = 22
+HOST = '183.195.148.212'
+PORT = 13370
 PATH = '/home/sftp/internal'
 USERNAME = 'sftp'
-PASSWD = 'SFTP@chance'
+PASSWD = 'SFTP@201801'
 
 
 # 通知回调

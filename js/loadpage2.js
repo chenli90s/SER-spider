@@ -1,7 +1,7 @@
 var system = require('system'),
     page = require("webpage").create();
 
-var fs = require('fs');
+// var fs = require('fs');
 var cookiesStr = system.args[1];
 phantom.cookiesEnabled = true;
 // page.settings.resourceTimeout = system.args[2];
@@ -47,7 +47,7 @@ page.onLoadFinished = function () {
     if(page.url === 'https://ics.autohome.com.cn/Dms/Order/Search'){
         // page.render('result' + new Date().toDateString() + '.png');
         // console.log(JSON.stringify(cookies));
-        phantom.exit();
+        // phantom.exit();
     }
 };
 
@@ -73,14 +73,14 @@ page.onResourceRequested = function (request) {
 
 page.open('https://ics.autohome.com.cn/passport/Home/Index', function (status) {
     if (status === "success") {
-        // page.render('result' + new Date().toDateString() + '.png');
+        page.render('result' + new Date().toDateString() + '.png');
         // console.log(status)
         page.evaluate(function () {
             document.getElementsByClassName('ics_nav')[0].children[2].children[0].click()
         })
     }else {
         page.render('result' + new Date().toDateString() + '.png');
-        console.log(status)
+        console.log(status);
         phantom.exit();
     }
 });

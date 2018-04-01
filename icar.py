@@ -40,14 +40,17 @@ def construct_cmd(cookie):
     return cmd
 
 def getPage(cookie, page):
-    resp = requests.get('http://amc.xcar.com.cn/index.php', params={'AmsOrder_page': page, 'ajax': 'order-index', 'r':'ams/dealerOrder/Index'},
+    try:
+        resp = requests.get('http://amc.xcar.com.cn/index.php', params={'AmsOrder_page': page, 'ajax': 'order-index', 'r':'ams/dealerOrder/Index'},
                         headers=construct_header(cookie))
-    return resp.text
+        return resp.text
+    except:
+        pass
 
 
 def start(cookie, history):
     cmd = construct_cmd(cookie)
-    # print(cmd)
+    log.info(cmd)
     log.info('收集cookie信息')
     # cook = os.popen(cmd).read()
     log.info('验证cookie信息...')
@@ -61,7 +64,7 @@ def start(cookie, history):
 
     history.save()
     # print(history.index)
-    log.info("本次共抓取数据%d, 最后更新时间为"%(history.index, history.ic_endtime_tmp))
+    log.info("本次共抓取数据%d, 最后更新时间为%s"%(history.index, history.ic_endtime_tmp))
 
 def get_page_size(content):
     con_el = etree.HTML(content)
@@ -82,9 +85,10 @@ def iter_item(cook, page_size, history):
             flag = parse_page(content, history, f)
             if flag:
                 return
-            time.sleep(1)
+            time.sleep(3)
     if history.index > 0:
         remote.upload(file_name)
+        log.info('上传完成')
         remote.get(file_name, history.index)
 
 
@@ -96,8 +100,9 @@ def parse_page(content, history, f):
         phone = line.xpath('./td[4]/text()')[0]
         datetimes = line.xpath('./td[7]/text()')
         datetime = " ".join(datetimes)
-        log.info("%s %s %s"%(name, phone, datetime))
+
         if history.vild_icar(datetime):
+            log.info("%s %s %s" % (name, phone, datetime))
             strf = "%s, %s, %s, \n"%(name, phone, datetime)
             f.write(strf.encode())
             history.index += 1

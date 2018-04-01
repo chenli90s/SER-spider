@@ -52,12 +52,15 @@ def get(url, page, header):
 
 
 def get_page(page, cookie):
-    resp = requests.get('https://ics.autohome.com.cn/Dms/Order/SearchOrderList',
-                        params=construct_param(page), headers=construct_header(cookie))
-    if resp.status_code == 200:
-        return resp.text
-    else:
-        print(resp.status_code)
+    try:
+        resp = requests.get('https://ics.autohome.com.cn/Dms/Order/SearchOrderList',
+                            params=construct_param(page), headers=construct_header(cookie))
+        if resp.status_code == 200:
+            return resp.text
+        else:
+            print(resp.status_code)
+    except:
+        pass
 
 
 def get_platform():
@@ -95,6 +98,7 @@ def construct_cmd(cookie):
 def start(cookie, history):
     log.info('收集cookie信息')
     cmd = construct_cmd(cookie)
+    log.info(cmd)
     # cook = os.popen(cmd).read()
     log.info('验证cookie信息...')
     cook = exc_cmd(cmd, 20)
@@ -104,7 +108,7 @@ def start(cookie, history):
     # todo 通知
 
     history.save()
-    log.info("本次共抓取数据%d, 最后更新时间为"%(history.index, history.ic_endtime_tmp))
+    log.info("本次共抓取数据%d, 最后更新时间为%S"%(history.index, history.ch_endtime_tmp))
 
 
 def load_data(cook, history):
@@ -124,7 +128,7 @@ def load_data(cook, history):
     # todo 通知
 
     # os.remove('carhome.csv')
-    print(history.index)
+    # print(history.index)
     history.save()
 
 import time
@@ -139,6 +143,7 @@ def iter_page(cook, page_size, history):
             time.sleep(4)
     if history.index>0:
         remote.upload(file_name)
+        log.info('上传完成')
         remote.get(file_name, history.index)
 
 

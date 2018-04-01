@@ -31,6 +31,8 @@ python spider.py --yiche "这里放上cook"
 
 cookie路径为`https://ics.autohome.com.cn/passport/Home/Index`
 
+运行脚本的ip必须与取得cookie的ip一致！
+
 ```
 python spider.py --carhome "这里放上cook"
 ```
