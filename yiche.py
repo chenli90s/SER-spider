@@ -64,7 +64,7 @@ def start(cookie, history):
     # page_size = get_page_size(getPage(cookies, 2))
     # iter_data(cookies, page_size)
     # parse_page(getPage(cookies, 5))
-    file_name = '易车_%s.csv'%datetime.now().strftime(history.formats)
+    file_name = 'yiche%s.csv'%datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
         run_spider(cookies, history, f)
     # todo: 上传并通知

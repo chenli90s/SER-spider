@@ -134,7 +134,7 @@ def load_data(cook, history):
 import time
 from datetime import datetime
 def iter_page(cook, page_size, history):
-    file_name = '汽车之家%s.csv' % datetime.now().strftime(history.formats)
+    file_name = 'carhome%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
         for i in range(page_size):
             flag = parse_page(get_page(i+1, cook), history, f)

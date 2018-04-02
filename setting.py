@@ -2,7 +2,7 @@
 # FTP
 HOST = '183.195.148.212'
 PORT = 13370
-PATH = '/home/sftp/internal'
+PATH = '/home/sftp/internal/'
 USERNAME = 'sftp'
 PASSWD = 'SFTP@201801'
 
