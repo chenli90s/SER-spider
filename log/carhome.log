@@ -962,3 +962,151 @@ Traceback (most recent call last):
   File "C:\Users\Chenli\AppData\Local\Programs\Python\Python36\lib\ftplib.py", line 210, in getline
     raise EOFError
 EOFError
+2018-03-31 13:43:37,894 INFO    : 收集cookie信息
+2018-03-31 13:43:37,894 INFO    : 验证cookie信息...
+2018-03-31 13:44:03,961 INFO    : 验证cookie信息成功！数据抓取中...
+2018-03-31 13:44:03,961 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 182, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 105, in start
+    cook = eval(cook)
+TypeError: eval() arg 1 must be a string, bytes or code object
+2018-03-31 13:44:30,901 INFO    : 收集cookie信息
+2018-03-31 13:44:30,902 INFO    : 验证cookie信息...
+2018-03-31 13:44:55,533 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 182, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 103, in start
+    cook = exc_cmd(cmd, 20)
+  File "C:\Desktop\djangocode\untitled1\tools.py", line 47, in exc_cmd
+    t.join(5)
+  File "C:\Users\Chenli\AppData\Local\Programs\Python\Python36\lib\threading.py", line 1060, in join
+    self._wait_for_tstate_lock(timeout=max(timeout, 0))
+  File "C:\Users\Chenli\AppData\Local\Programs\Python\Python36\lib\threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+2018-03-31 13:45:46,531 INFO    : 收集cookie信息
+2018-03-31 13:45:46,534 INFO    : 验证cookie信息...
+2018-03-31 13:45:50,718 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 183, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 104, in start
+    cook = exc_cmd(cmd, 20)
+  File "C:\Desktop\djangocode\untitled1\tools.py", line 44, in exc_cmd
+    time.sleep(0.2)
+KeyboardInterrupt
+2018-03-31 13:47:12,117 INFO    : 收集cookie信息
+2018-03-31 13:47:12,120 INFO    : 验证cookie信息...
+2018-03-31 13:47:38,217 INFO    : 验证cookie信息成功！数据抓取中...
+2018-03-31 13:47:38,217 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 183, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+TypeError: eval() arg 1 must be a string, bytes or code object
+2018-04-01 22:09:48,898 INFO    : 收集cookie信息
+2018-04-01 22:09:48,904 INFO    : 验证cookie信息...
+2018-04-01 22:10:14,959 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-01 22:10:14,959 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+TypeError: eval() arg 1 must be a string, bytes or code object
+2018-04-01 22:10:36,639 INFO    : 收集cookie信息
+2018-04-01 22:10:36,642 INFO    : 验证cookie信息...
+2018-04-01 22:10:56,906 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 104, in start
+    cook = exc_cmd(cmd, 20)
+  File "C:\Desktop\djangocode\untitled1\tools.py", line 44, in exc_cmd
+    time.sleep(0.2)
+KeyboardInterrupt
+2018-04-01 22:12:45,922 INFO    : 收集cookie信息
+2018-04-01 22:12:45,923 INFO    : bin\phantomjs4win.exe .\js\loadpage2.js  "fvlid=1521556861448CIWs9Hohfq; sessionip=180.175.144.138; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=WsHo9y7Q3ZTDLgvLcOViD8x1I85fUFMZi__rhWo7hgaEnQGYXth6sEA-KIuzoKMv5X0LOglvcuHPfbTzRzRcscHNmcw1; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=2018%2f4%2f1+22%3a08%3a57; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZqA7OBWf_4GpBXLcLedvmrBIBtkvE_V7OyMRaC0xJsMOw; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqGkoBvYZf/ETW6+ZQHVMz9OSLXDYkftFmG1hygu4+pkadPv12qhGQk91FBL0gcOv04VPdyQsbvUvZfqLQVcfA0s=; ahpvno=2; ref=0%7C0%7C0%7C0%7C2018-04-01+22%3A08%3A58.586%7C2018-03-31+12%3A59%3A32.612; sessionvid=8711C3D0-0FA3-4FA4-BDD2-9FAFEE395FB0; ahrlid=1522591742271AAQ8CYOhQE-1522591743083" "30"
+2018-04-01 22:12:45,937 INFO    : 验证cookie信息...
+2018-04-01 22:13:12,008 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-01 22:13:12,008 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+TypeError: eval() arg 1 must be a string, bytes or code object
+2018-04-01 22:51:07,691 INFO    : 收集cookie信息
+2018-04-01 22:51:07,692 INFO    : bin\phantomjs4win.exe .\js\loadpage2.js  "fvlid=1521556861448CIWs9Hohfq; sessionip=180.175.144.138; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=WsHo9y7Q3ZTDLgvLcOViD8x1I85fUFMZi__rhWo7hgaEnQGYXth6sEA-KIuzoKMv5X0LOglvcuHPfbTzRzRcscHNmcw1; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=2018%2f4%2f1+22%3a08%3a57; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZqA7OBWf_4GpBXLcLedvmrBIBtkvE_V7OyMRaC0xJsMOw; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqGkoBvYZf/ETW6+ZQHVMz9OSLXDYkftFmG1hygu4+pkadPv12qhGQk91FBL0gcOv04VPdyQsbvUvZfqLQVcfA0s=; ahpvno=2; ref=0%7C0%7C0%7C0%7C2018-04-01+22%3A08%3A58.586%7C2018-03-31+12%3A59%3A32.612; sessionvid=8711C3D0-0FA3-4FA4-BDD2-9FAFEE395FB0; ahrlid=1522591742271AAQ8CYOhQE-1522591743083" "30"
+2018-04-01 22:51:07,695 INFO    : 验证cookie信息...
+2018-04-01 22:51:11,159 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-01 22:51:11,159 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+  File "<string>", line 1, in <module>
+NameError: name 'fail' is not defined
+2018-04-01 22:52:24,570 INFO    : 收集cookie信息
+2018-04-01 22:52:24,571 INFO    : bin\phantomjs4win.exe .\js\loadpage2.js  "fvlid=1521556861448CIWs9Hohfq; sessionip=180.175.144.138; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=WsHo9y7Q3ZTDLgvLcOViD8x1I85fUFMZi__rhWo7hgaEnQGYXth6sEA-KIuzoKMv5X0LOglvcuHPfbTzRzRcscHNmcw1; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=2018%2f4%2f1+22%3a08%3a57; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZqA7OBWf_4GpBXLcLedvmrBIBtkvE_V7OyMRaC0xJsMOw; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqGkoBvYZf/ETW6+ZQHVMz9OSLXDYkftFmG1hygu4+pkadPv12qhGQk91FBL0gcOv04VPdyQsbvUvZfqLQVcfA0s=; ahpvno=3; ref=0%7C0%7C0%7C0%7C2018-04-01+22%3A09%3A08.809%7C2018-03-31+12%3A59%3A32.612; ahrlid=1522591751736cQpxwrdDc7-1522593543839" "30"
+2018-04-01 22:52:24,588 INFO    : 验证cookie信息...
+2018-04-01 22:52:27,647 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-01 22:52:27,647 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+  File "<string>", line 1, in <module>
+NameError: name 'fail' is not defined
+2018-04-01 22:53:34,909 INFO    : 收集cookie信息
+2018-04-01 22:53:34,910 INFO    : bin\phantomjs4win.exe .\js\loadpage2.js  "fvlid=1521556861448CIWs9Hohfq; sessionip=180.175.144.138; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=WsHo9y7Q3ZTDLgvLcOViD8x1I85fUFMZi__rhWo7hgaEnQGYXth6sEA-KIuzoKMv5X0LOglvcuHPfbTzRzRcscHNmcw1; ref=0%7C0%7C0%7C0%7C2018-04-01+22%3A51%3A43.591%7C2018-03-31+12%3A59%3A32.612; sessionvid=576AEDAE-9A19-48E4-A3BD-DC8FD8E8516F; ahpvno=5; ahrlid=1522594369994CioYtxtVPO-1522594379872; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=2018%2f4%2f1+22%3a08%3a57A4%2f1%2f2018+10%3a52%3a55+PM; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZpL8BASctiff4utlCmaMzQs8UTIINS1WqEmrcnIjWIpOw; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqGkoBvYZf/ETW6+ZQHVMz9OSLXDYkftFmG1hygu4+pkadPv12qhGQk91FBL0gcOv02uqnSe11ORYjp2jgt07ljk=" "30"
+2018-04-01 22:53:34,912 INFO    : 验证cookie信息...
+2018-04-01 22:53:38,137 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-01 22:53:38,137 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+  File "<string>", line 1, in <module>
+NameError: name 'fail' is not defined
+2018-04-01 22:55:25,447 INFO    : 收集cookie信息
+2018-04-01 22:55:25,448 INFO    : bin\phantomjs4win.exe .\js\loadpage2.js  "fvlid=1521556861448CIWs9Hohfq; sessionip=180.175.144.138; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=WsHo9y7Q3ZTDLgvLcOViD8x1I85fUFMZi__rhWo7hgaEnQGYXth6sEA-KIuzoKMv5X0LOglvcuHPfbTzRzRcscHNmcw1; ref=0%7C0%7C0%7C0%7C2018-04-01+22%3A51%3A43.591%7C2018-03-31+12%3A59%3A32.612; sessionvid=576AEDAE-9A19-48E4-A3BD-DC8FD8E8516F; ahpvno=5; ahrlid=1522594369994CioYtxtVPO-1522594379872; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=2018%2f4%2f1+22%3a08%3a57A4%2f1%2f2018+10%3a52%3a55+PM; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZpL8BASctiff4utlCmaMzQs8UTIINS1WqEmrcnIjWIpOw; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqGkoBvYZf/ETW6+ZQHVMz9OSLXDYkftFmG1hygu4+pkadPv12qhGQk91FBL0gcOv02uqnSe11ORYjp2jgt07ljk=" "30"
+2018-04-01 22:55:25,450 INFO    : 验证cookie信息...
+2018-04-01 22:55:29,108 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-01 22:55:29,108 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+  File "<string>", line 1, in <module>
+NameError: name 'fail' is not defined
+2018-04-01 22:56:00,261 INFO    : 收集cookie信息
+2018-04-01 22:56:00,262 INFO    : bin\phantomjs4win.exe .\js\loadpage2.js  "fvlid=1521556861448CIWs9Hohfq; sessionip=180.175.144.138; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=WsHo9y7Q3ZTDLgvLcOViD8x1I85fUFMZi__rhWo7hgaEnQGYXth6sEA-KIuzoKMv5X0LOglvcuHPfbTzRzRcscHNmcw1; ref=0%7C0%7C0%7C0%7C2018-04-01+22%3A51%3A43.591%7C2018-03-31+12%3A59%3A32.612; sessionvid=576AEDAE-9A19-48E4-A3BD-DC8FD8E8516F; ahpvno=5; ahrlid=1522594369994CioYtxtVPO-1522594379872; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=2018%2f4%2f1+22%3a08%3a57A4%2f1%2f2018+10%3a52%3a55+PM; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZpL8BASctiff4utlCmaMzQs8UTIINS1WqEmrcnIjWIpOw; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqGkoBvYZf/ETW6+ZQHVMz9OSLXDYkftFmG1hygu4+pkadPv12qhGQk91FBL0gcOv02uqnSe11ORYjp2jgt07ljk=" "30"
+2018-04-01 22:56:00,283 INFO    : 验证cookie信息...
+2018-04-01 22:56:26,515 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-01 22:56:26,525 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+TypeError: eval() arg 1 must be a string, bytes or code object
+2018-04-14 14:31:28,687 INFO    : 收集cookie信息
+2018-04-14 14:31:28,687 INFO    : bin\phantomjs4win.exe .\js\loadpage2.js  "fvlid=1521556861448CIWs9Hohfq; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=I9NpnvzydD8aE6r_ta8bZn86NqIqZP_8ajnLpgbW1IN0nIJn33nmvsMrz9vg18Ahc0nWJ8IlOEFoX1pYCj_TEm3tT3I1; sessionip=180.175.213.57; sessionvid=0E8BFFE6-E3C4-4D2E-B7CB-C349EA7D03B4; ref=0%7C0%7C0%7C0%7C2018-04-14+14%3A28%3A44.773%7C2018-04-01+23%3A04%3A32.132; ahpvno=4; ahrlid=1523687348162F2GYamq5Cn-1523687426449; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=4%2f14%2f2018+2%3a26%3a37+PMA4%2f14%2f2018+2%3a30%3a25+PM; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZpL8BASctiff0GZI3O_3ziPZ1ZKdTzTlkm_JcXjH-JTMA; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqGkoBvYZf/ETW6+ZQHVMz9Ob0Do0yeKp57Niy6e6V6MhzY6hXU3uUAGCg+fuqxaJC8/iA9kUucDGbfWcM7kGDvY=" "30"
+2018-04-14 14:31:28,695 INFO    : 验证cookie信息...
+2018-04-14 14:31:54,869 INFO    : 验证cookie信息成功！数据抓取中...
+2018-04-14 14:31:54,871 ERROR   : cookie信息不正确
+Traceback (most recent call last):
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 184, in main
+    start(cookie, History())
+  File "C:\Desktop\djangocode\untitled1\carhome.py", line 106, in start
+    cook = eval(cook)
+TypeError: eval() arg 1 must be a string, bytes or code object
