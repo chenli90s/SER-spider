@@ -133,8 +133,9 @@ def load_data(cook, history):
 
 import time
 from datetime import datetime
+from setting import carhome_username
 def iter_page(cook, page_size, history):
-    file_name = '德达汽车_autohome_%s.csv' % datetime.now().strftime(history.formats)
+    file_name = carhome_username+'_autohome_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
         f.write('客户姓名' + ','
                 + '客户号码' + ","
