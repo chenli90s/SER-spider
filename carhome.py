@@ -108,16 +108,16 @@ def start(cookie, history):
     # todo 通知
 
     history.save()
-    log.info("本次共抓取数据%d, 最后更新时间为%S"%(history.index, history.ch_endtime_tmp))
+    log.info("本次共抓取数据%d, 最后更新时间为%s"%(history.index, history.ch_endtime_tmp))
 
 
 def load_data(cook, history):
     data = get_page(1, cook)
-    print(data)
+    # print(data)
     dt = json.loads(data)
     if not dt['returncode']:
         result = dt['result']['list']
-        print(result)
+        # print(result)
         history.ch_endtime_tmp = result[0]['LeadTimeStr']
         rowcount = int(dt['result']['rowcount'])
         if rowcount % 10 > 0:
@@ -136,6 +136,18 @@ from datetime import datetime
 def iter_page(cook, page_size, history):
     file_name = '德达汽车_autohome_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
+        f.write('客户姓名' + ','
+                + '客户号码' + ","
+                + '来电归属' + ","
+                + '归属店铺' + ","
+                + '线索获得时间' + ","
+                + '上牌地区' + ","
+                + '线索状态' + ","
+                + '线索类型' + ","
+                + '商业产品来源	' + ","
+                + '负责销售	' + ","
+                + '线索意向车型	' + ","
+                + ',\n')
         for i in range(page_size):
             flag = parse_page(get_page(i+1, cook), history, f)
             if flag:
@@ -157,10 +169,31 @@ def parse_page(content, history, f):
             customerNameStr = rt['CustomerNameStr']
             name = etree.HTML(customerNameStr).xpath('//a/text()')[0]
             phone = rt['CustomerPhoneStr'].split('<br/>')[0]
+            local = rt['CustomerPhoneStr'].split('<br/>')[1]
+            shop = rt['GetLeadDealerNameStr']
             datetimes = rt['LeadTimeStr']
+            LicenseCityStr = rt['LicenseCityStr']
+            ordstatus = rt['OrderStateStr']
+            ordtype = " ".join(rt['OrderTypeStr'].split('<br/>'))
+            proname = rt['ProductNameStr']
+            SalesNameStr = rt['SalesNameStr']
+            SpecNameStr = rt['SpecNameStr']
+            if SpecNameStr == "<span class='grey-999'>未标注</span>":
+                SpecNameStr = '未标注'
             log.info("%s %s %s" % (name, phone, datetimes))
             if history.vild_carhome(datetimes):
-                f.write(name + ',' + phone + "," + datetimes + ',\n')
+                f.write(name + ','
+                        + phone + ","
+                        + local + ","
+                        + shop + ","
+                        + datetimes + ","
+                        + LicenseCityStr + ","
+                        + ordstatus + ","
+                        + ordtype + ","
+                        + proname + ","
+                        + SalesNameStr + ","
+                        + SpecNameStr +
+                        ',\n')
                 history.index += 1
             else:
                 return True

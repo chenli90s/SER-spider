@@ -52,14 +52,18 @@ page.onLoadFinished = function () {
     }
 };
 
-// page.onResourceRequested = function (request) {
-//     console.log(request.url)
-//     if(request.url === 'http://crm.yichehuoban.cn/Customer/CustomerList?pageIndex=2'){
-//         page.render('result' + new Date().toDateString() + '.png');
-//         console.log(JSON.stringify(page.cookies));
-//         phantom.exit();
-//     }
-// };
+page.onResourceRequested = function (request) {
+    // console.log(request.url)
+    if(request.url === 'http://crm.yichehuoban.cn/Scripts/common.js'){
+        // page.render('result' + new Date().toDateString() + '.png');
+        // console.log(JSON.stringify(page.cookies));
+        // phantom.exit();
+        page.evaluate(function () {
+            console.log(Object.keys(document))
+        })
+
+    }
+};
 
 
 

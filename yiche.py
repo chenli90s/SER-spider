@@ -66,6 +66,8 @@ def start(cookie, history):
     # parse_page(getPage(cookies, 5))
     file_name = '100008417_yichehuoban_%s.csv'%datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
+        row = "意向购买度, 性别, 年龄, 意向车型, 姓名, 电话, 归属,建卡状态,线索负责人,线索获得时间, 线索类型, 跟进人, 意向车型, 操作,\n "
+        f.write(row)
         run_spider(cookies, history, f)
     # todo: 上传并通知
     if history.index>0:
@@ -101,19 +103,49 @@ def iter_data(cookies, page_size, history, f):
            return
         time.sleep(1)
 
-
+import re
 def parse_page(context, history, f):
     els = etree.HTML(context)
+    # print(context)
     trs = els.xpath('//table/tbody/tr')
     for tr in trs:
         name_phone = tr.xpath('./td[1]/text()')
+        customer = tr.xpath('./td[1]/a/@onmouseover')[0]
+        customers = re.findall("\('(.+)',?", customer)[0].split("',")[0].split('<br/>')
+        # ---------
+        customers_1 = customers[1]
+        customers_2 = customers[2]
+        customers_3 = customers[3]
+        customers_4 = customers[4]
         name = name_phone[0].strip()
         phone = name_phone[2].strip()
+        local = name_phone[3].strip()
+        card_type = tr.xpath('./td[2]/span/text()')[0]
+        # print(card_type)
+        leader = tr.xpath('./td[3]/text()')
+        if leader:
+            leader = leader[0]
+        else:
+            leader = ''
         times = tr.xpath('./td[4]/text()')
         datetimes = " ".join(times)
+        type = tr.xpath('./td[5]/text()')[0].strip()
+        so_leader = tr.xpath('./td[6]/text()')
+        if so_leader:
+            so_leader = so_leader[0]
+        else:
+            so_leader = ''
+        want_type = tr.xpath('./td[7]/text()')
+        if want_type:
+            want_type = want_type[0].strip()
+        else:
+            want_type = ''
+        ent = tr.xpath('./td[8]/a[1]/text()')[0]
         if history.vild_yiche(datetimes):
             log.info("%s %s %s" % (name, phone, datetimes))
-            f.write("%s, %s, %s,\n"%(name, phone, datetimes))
+            f.write("%s,%s, %s, %s,%s,%s, %s, %s,%s,%s, %s, %s,%s,%s,\n"%(customers_1,
+                                                                              customers_2, customers_3,
+                                                                              customers_4,name,phone,local,card_type,leader,datetimes,type,so_leader,want_type,ent))
             history.index +=1
         else:
             return True

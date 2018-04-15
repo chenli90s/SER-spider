@@ -78,11 +78,14 @@ def get_page_size(content):
 import time
 from datetime import datetime
 def iter_item(cook, page_size, history):
-    file_name = 'icar%s.csv' % datetime.now().strftime(history.formats)
+    file_name = 'cdsrhs88_xcar_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'wb') as f:
+        f.write('类型, 姓名, 联系方式, 上牌城市, 意向车型, 订单产生时间, 负责销售, 分配时间, \n'.encode())
         for i in range(page_size):
             content = getPage(cook, i+1)
-            flag = parse_page(content, history, f)
+            flag = ''
+            if content:
+                flag = parse_page(content, history, f)
             if flag:
                 return
             time.sleep(3)
@@ -96,14 +99,22 @@ def parse_page(content, history, f):
     con_el = etree.HTML(content)
     line_els = con_el.xpath('//div[@class="subject_main"]/table/tbody/tr')
     for line in line_els:
+        type = line.xpath('./td[2]/text()')[0]
         name = line.xpath('./td[3]/text()')[0]
         phone = line.xpath('./td[4]/text()')[0]
+        city = line.xpath('./td[5]/text()')[0]
+        hope_car = line.xpath('./td[6]/text()')
+        if hope_car:
+            hope_car = hope_car[0]
+        else:
+            hope_car = ''
         datetimes = line.xpath('./td[7]/text()')
         datetime = " ".join(datetimes)
-
+        leader = line.xpath('./td[8]/text()')[0]
+        create_dt = " ".join(line.xpath('./td[9]/text()'))
         if history.vild_icar(datetime):
             log.info("%s %s %s" % (name, phone, datetime))
-            strf = "%s, %s, %s, \n"%(name, phone, datetime)
+            strf = "%s, %s, %s,%s, %s, %s,%s, %s,\n"%(type, name, phone,city,hope_car, datetime, leader,create_dt)
             f.write(strf.encode())
             history.index += 1
         else:
