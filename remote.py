@@ -53,6 +53,15 @@ def send(title):
     smtpObj.login('admin@chenli90s.cn', 'dpnrgroavcuoichj')
     smtpObj.sendmail('admin@chenli90s.cn', E_MAIL, msg.as_string())
 
+def send_msg(err):
+    msg = MIMEText(err, 'html', 'utf-8')
+    msg['Subject'] = Header(err, 'utf-8').encode()
+    msg['From'] = 'Spider'
+    msg['To'] = Header('管理员')
+    smtpObj = smtplib.SMTP_SSL('smtp.qq.com', 465)
+    smtpObj.login('admin@chenli90s.cn', 'dpnrgroavcuoichj')
+    smtpObj.sendmail('admin@chenli90s.cn', E_MAIL, msg.as_string())
+
 def get(name, count):
     # msg = '%s更新了%d'%(count, name)
     E = objectify.ElementMaker(annotate=False)

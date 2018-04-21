@@ -77,7 +77,7 @@ def get_page_size(content):
 
 import time
 from datetime import datetime
-from setting import icar_username
+from setting import icar_username, crawl_delay
 def iter_item(cook, page_size, history):
     file_name = icar_username+'_xcar_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'wb') as f:
@@ -89,11 +89,18 @@ def iter_item(cook, page_size, history):
                 flag = parse_page(content, history, f)
             if flag:
                 return
-            time.sleep(3)
+
     if history.index > 0:
-        remote.upload(file_name)
-        log.info('上传完成')
-        remote.get(file_name, history.index)
+        try:
+            remote.upload(file_name)
+            log.info('上传完成')
+        except:
+            remote.send_msg('sftp服务器失效')
+            sys.exit()
+        try:
+            remote.get(file_name, history.index)
+        except:
+            remote.send_msg('通知服务器异常，请尽快检查')
 
 
 def parse_page(content, history, f):
@@ -120,6 +127,7 @@ def parse_page(content, history, f):
             history.index += 1
         else:
             return True
+        time.sleep(crawl_delay)
 
 
 def main(cookie):

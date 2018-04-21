@@ -10,6 +10,8 @@ yiche_username = '100008417'
 carhome_username = '德达汽车'
 icar_username = 'cdsrhs88'
 
+crawl_delay = 2
+
 # 通知回调
 CALLBACK_URL = "http://183.195.148.212/ipsos/task"
 

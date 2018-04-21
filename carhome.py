@@ -133,7 +133,7 @@ def load_data(cook, history):
 
 import time
 from datetime import datetime
-from setting import carhome_username
+from setting import carhome_username,crawl_delay
 def iter_page(cook, page_size, history):
     file_name = carhome_username+'_autohome_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
@@ -153,11 +153,18 @@ def iter_page(cook, page_size, history):
             flag = parse_page(get_page(i+1, cook), history, f)
             if flag:
                 return
-            time.sleep(4)
+
     if history.index>0:
-        remote.upload(file_name)
-        log.info('上传完成')
-        remote.get(file_name, history.index)
+        try:
+            remote.upload(file_name)
+            log.info('上传完成')
+        except:
+            remote.send_msg('sftp服务器失效')
+            sys.exit()
+        try:
+            remote.get(file_name, history.index)
+        except:
+            remote.send_msg('通知服务器异常，请尽快检查')
 
 
 
@@ -198,6 +205,7 @@ def parse_page(content, history, f):
                 history.index += 1
             else:
                 return True
+            time.sleep(crawl_delay)
 
 
 

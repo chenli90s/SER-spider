@@ -51,7 +51,7 @@ def getPage(cookie, page):
     except:
         pass
 
-from setting import yiche_username
+from setting import yiche_username, crawl_delay
 def start(cookie, history):
     # print(cookie, '&&&&&&&')
     log.info('收集cookie信息')
@@ -71,9 +71,17 @@ def start(cookie, history):
         run_spider(cookies, history, f)
     # todo: 上传并通知
     if history.index>0:
-        remote.upload(file_name)
-        log.info("上传完成")
-        remote.get(file_name, history.index)
+        try:
+            remote.upload(file_name)
+            log.info("上传完成")
+        except:
+            remote.send_msg('sftp服务器失效')
+            sys.exit()
+
+        try:
+            remote.get(file_name, history.index)
+        except:
+            remote.send_msg('通知服务器异常，请尽快检查')
     # os.remove(file_name)
     history.save()
     # print(history.index)
@@ -101,7 +109,7 @@ def iter_data(cookies, page_size, history, f):
         flag = parse_page(getPage(cookies, i+1), history, f)
         if flag:
            return
-        time.sleep(1)
+
 
 import re
 def parse_page(context, history, f):
@@ -120,7 +128,11 @@ def parse_page(context, history, f):
         name = name_phone[0].strip()
         phone = name_phone[2].strip()
         local = name_phone[3].strip()
-        card_type = tr.xpath('./td[2]/span/text()')[0]
+        card_type = tr.xpath('./td[2]/span/text()')
+        if card_type:
+            card_type = card_type[0]
+        else:
+            card_type = tr.xpath('./td[2]/a/span/text()')[0]
         # print(card_type)
         leader = tr.xpath('./td[3]/text()')
         if leader:
@@ -149,6 +161,7 @@ def parse_page(context, history, f):
             history.index +=1
         else:
             return True
+        time.sleep(crawl_delay)
 
 
 
