@@ -68,7 +68,8 @@ start = datetime(1970, 4, 19, 12, 20).strftime('%Y-%m-%d %H:%M:%S')
 
 class History:
 
-    def __init__(self):
+    def __init__(self, username):
+        self.username = username
         self.yc_endtime = datetime(1970, 4, 19, 12, 20).strftime('%Y-%m-%d %H:%M')
         self.ch_endtime = start
         self.ic_endtime = start
@@ -81,9 +82,9 @@ class History:
         try:
             f = open('tp.plk', 'rb')
             dt = pickle.load(f)
-            self.yc_endtime = dt.get('yc',datetime(1970, 4, 19, 12, 20).strftime('%Y-%m-%d %H:%M'))
-            self.ch_endtime = dt.get('ch', start)
-            self.ic_endtime = dt.get('ic', start)
+            self.yc_endtime = dt.get('yc'+self.username,datetime(1970, 4, 19, 12, 20).strftime('%Y-%m-%d %H:%M'))
+            self.ch_endtime = dt.get('ch'+self.username, start)
+            self.ic_endtime = dt.get('ic'+self.username, start)
             f.close()
         except:
             pass
@@ -122,21 +123,21 @@ class History:
             f = open('tp.plk', 'rb')
             dt = pickle.load(f)
             if self.yc_endtime_tmp:
-                dt['yc'] = self.yc_endtime_tmp
+                dt['yc'+self.username] = self.yc_endtime_tmp
             if self.ch_endtime_tmp:
-                dt['ch'] = self.ch_endtime_tmp
+                dt['ch'+self.username] = self.ch_endtime_tmp
             if self.ic_endtime_tmp:
-                dt['ic'] = self.ic_endtime_tmp
+                dt['ic'+self.username] = self.ic_endtime_tmp
             f.close()
             tmp = dt
         except Exception as e:
             tmp = {}
             if self.yc_endtime_tmp:
-                tmp['yc'] = self.yc_endtime_tmp
+                tmp['yc'+self.username] = self.yc_endtime_tmp
             if self.ch_endtime_tmp:
-                tmp['ch'] = self.ch_endtime_tmp
+                tmp['ch'+self.username] = self.ch_endtime_tmp
             if self.ic_endtime_tmp:
-                tmp['ic'] = self.ic_endtime_tmp
+                tmp['ic'+self.username] = self.ic_endtime_tmp
         with open('tp.plk', 'wb') as f:
             pickle.dump(tmp, f)
 
@@ -151,9 +152,9 @@ if __name__ == '__main__':
     print(history.ch_endtime)
     print(history.yc_endtime)
     print(history.ic_endtime)
-    history.ch_endtime_tmp = '2018-03-23 12:20:00'
+    # history.ch_endtime_tmp = '2018-03-23 12:20:00'
     # print(history.vild_carhome('1977-04-19 12:20:00'))
     # print(history.yc_endtime)
     # print(history.vild_yiche('1977-04-19 12:20'))
-    history.save()
+    # history.save()
     # history.test()

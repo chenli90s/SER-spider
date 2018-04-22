@@ -122,7 +122,9 @@ def start_tmp(cookie, history):
 
 def main_tmp(cookie):
     try:
-        start_tmp(cookie, History())
+        cookie, filename = cookie
+        setting.carhome_username = filename
+        start_tmp(cookie, History(filename))
     except:
         log.exception('cookie信息不正确')
         remote.send("汽车之家")
@@ -151,9 +153,10 @@ def load_data(cook, history):
 
 import time
 from datetime import datetime
-from setting import carhome_username,crawl_delay
+from setting import crawl_delay
+import setting
 def iter_page(cook, page_size, history):
-    file_name = carhome_username+'_autohome_%s.csv' % datetime.now().strftime(history.formats)
+    file_name = setting.carhome_username+'_autohome_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
         f.write('客户姓名' + ','
                 + '客户号码' + ","
@@ -239,6 +242,8 @@ def main(cookie):
             sys.exit()
     else:
         try:
+            cookie, filename = cookie
+            setting.carhome_username = filename
             start(cookie, History())
         except:
             log.exception('cookie信息不正确')

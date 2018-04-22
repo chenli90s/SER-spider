@@ -77,9 +77,10 @@ def get_page_size(content):
 
 import time
 from datetime import datetime
-from setting import icar_username, crawl_delay
+from setting import crawl_delay
+import setting
 def iter_item(cook, page_size, history):
-    file_name = icar_username+'_xcar_%s.csv' % datetime.now().strftime(history.formats)
+    file_name = setting.icar_username+'_xcar_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'wb') as f:
         f.write('类型, 姓名, 联系方式, 上牌城市, 意向车型, 订单产生时间, 负责销售, 分配时间, \n'.encode())
         for i in range(page_size):
@@ -147,7 +148,9 @@ def main(cookie):
             sys.exit()
     else:
         try:
-            start(cookie, History())
+            cookie, filename = cookie
+            setting.icar_username = filename
+            start(cookie, History(filename))
         except:
             log.exception('cookie信息不正确')
             remote.send("爱卡")

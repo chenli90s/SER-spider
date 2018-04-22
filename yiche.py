@@ -51,7 +51,8 @@ def getPage(cookie, page):
     except:
         pass
 
-from setting import yiche_username, crawl_delay
+from setting import crawl_delay
+import setting
 def start(cookie, history):
     # print(cookie, '&&&&&&&')
     log.info('收集cookie信息')
@@ -64,7 +65,7 @@ def start(cookie, history):
     # page_size = get_page_size(getPage(cookies, 2))
     # iter_data(cookies, page_size)
     # parse_page(getPage(cookies, 5))
-    file_name = yiche_username+'_yichehuoban_%s.csv'%datetime.now().strftime(history.formats)
+    file_name = setting.yiche_username+'_yichehuoban_%s.csv'%datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
         row = "意向购买度, 性别, 年龄, 意向车型, 姓名, 电话, 归属,建卡状态,线索负责人,线索获得时间, 线索类型, 跟进人, 意向车型, 操作,\n "
         f.write(row)
@@ -179,7 +180,9 @@ def main(cookie):
             sys.exit()
     else:
         try:
-            start(cookie, History())
+            cookie, filename = cookie
+            setting.yiche_username = filename
+            start(cookie, History(filename))
         except:
             log.exception('cookie信息不正确')
             remote.send('易车')
