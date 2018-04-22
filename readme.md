@@ -31,7 +31,7 @@ E_MAIL = [
 cookie路径为`http://dealer.yichehuoban.cn/Home/Index`
 
 ```
-python spider.py --yiche "这里放上cook"
+python spider.py --yiche '登陆使用的用户名' "这里放上cook"
 ```
 
 ## 汽车之家
@@ -43,7 +43,7 @@ cookie路径为`https://ics.autohome.com.cn/passport/Home/Index`
 运行脚本的ip必须与取得cookie的ip一致！
 
 ```
-python spider.py --carhome "这里放上cook"
+python spider.py --carhome '登陆使用的用户名' '这里放上coo'
 ```
 
 ## 爱卡
@@ -53,7 +53,7 @@ python spider.py --carhome "这里放上cook"
 
 cookie路径为`http://amc.xcar.com.cn/index.php?r=ams/DealerHome/Index`
 ```
-python spider.py --icar "这里放上cook"
+python spider.py --icar '登陆使用的用户名' "这里放上cook"
 ```
 
 
