@@ -53,6 +53,17 @@ def run_cmd(cmd, data):
     result = os.popen(cmd).read()
     data.data = result
 
+def parse_cookie(cookie):
+    item = cookie.split(';')
+    cookies = []
+    for it in item:
+        cookie_dt = {}
+        res = it.split('=')
+        cookie_dt['name'] = res[0]
+        cookie_dt['value'] = res[1]
+        cookies.append(cookie_dt)
+    return cookies
+
 start = datetime(1970, 4, 19, 12, 20).strftime('%Y-%m-%d %H:%M:%S')
 
 class History:

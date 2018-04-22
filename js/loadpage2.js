@@ -5,9 +5,9 @@ var system = require('system'),
 var cookiesStr = system.args[1];
 phantom.cookiesEnabled = true;
 
-// page.settings.resourceTimeout = system.args[2];
-page.settings.userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36'
-window.navigator.userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36"
+page.settings.resourceTimeout = system.args[2];
+page.settings.userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36';
+window.navigator.userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36";
 
 function parseCookie() {
     var cooks = cookiesStr.split('; ');
@@ -55,14 +55,14 @@ page.onResourceRequested = function (request) {
         console.log(coo);
         phantom.exit();
     }
-    var re = new RegExp('https://x.autoimg.cn/dealer/ics/20180412B/Scripts/newics/pv.js?(.+)');
-    if (re.test(request.url)) {
-
-        page.evaluate(function (url) {
-
-
-        })
-    }
+    // var re = new RegExp('https://x.autoimg.cn/dealer/ics/20180412B/Scripts/newics/pv.js?(.+)');
+    // if (re.test(request.url)) {
+    //
+    //     page.evaluate(function (url) {
+    //
+    //
+    //     })
+    // }
 };
 
 

@@ -8,7 +8,7 @@ import os
 import pendulum
 import json
 from tools import exc_cmd
-from tools import History, getlog
+from tools import History, getlog, parse_cookie
 import remote
 
 log = getlog('carhome')
@@ -59,8 +59,8 @@ def get_page(page, cookie):
             return resp.text
         else:
             print(resp.status_code)
-    except:
-        pass
+    except Exception as e:
+        log.exception(e)
 
 
 def get_platform():
@@ -83,6 +83,9 @@ def construct_header(cookies):
     auth_headers['cookie'] = cookie
     return auth_headers
 
+def make_simple_header(cookie):
+    auth_headers['cookie'] = cookie
+    return auth_headers
 
 def construct_cmd(cookie):
     bash = get_platform()
@@ -106,12 +109,27 @@ def start(cookie, history):
     cook = eval(cook)
     load_data(cook, history)
     # todo 通知
-
     history.save()
     log.info("本次共抓取数据%d, 最后更新时间为%s"%(history.index, history.ch_endtime_tmp))
 
 
+def start_tmp(cookie, history):
+    log.info('验证cookie信息成功！数据抓取中...')
+    cook = parse_cookie(cookie)
+    load_data(cook, history)
+    history.save()
+    log.info("本次共抓取数据%d, 最后更新时间为%s" % (history.index, history.ch_endtime_tmp))
+
+def main_tmp(cookie):
+    try:
+        start_tmp(cookie, History())
+    except:
+        log.exception('cookie信息不正确')
+        remote.send("汽车之家")
+
+
 def load_data(cook, history):
+    # print(cook)
     data = get_page(1, cook)
     # print(data)
     dt = json.loads(data)
@@ -165,8 +183,6 @@ def iter_page(cook, page_size, history):
             remote.get(file_name, history.index)
         except:
             remote.send_msg('通知服务器异常，请尽快检查')
-
-
 
 
 def parse_page(content, history, f):
@@ -228,6 +244,15 @@ def main(cookie):
             log.exception('cookie信息不正确')
             remote.send("汽车之家")
 
-
+# from spider import run_forever
 if __name__ == '__main__':
-    main(None)
+    # cookie_dt = parse_cookie("fvlid=1521556861448CIWs9Hohfq; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; sessionip=114.95.225.155; ahpau=1; ref=0%7C0%7C0%7C0%7C2018-04-21+17%3A34%3A08.993%7C2018-04-01+23%3A04%3A32.132; __RequestVerificationToken_L3Bhc3Nwb3J00=ggjuVz2L55YsaC-6Ma2mr-0lcVFcN35X_PVRH3jt4Ak14dD2FDZ8R72VQQG0PKIe4F0MLgb9Mw3q2b7Ie3AcIPgF0l01; ahpvno=9; ahrlid=1524377063741NRQl1km0Hv-1524377079722; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=4%2f22%2f2018+2%3a04%3a41+PM; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZpL8BASctiff-v4MHGViOyFZ1ZKdTzTlkkVjaOo2_Lodv30CSnP-sQ0$D73F65556CD811ADE269A0C46978C33B; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqCvximZgNnnBeb+dZ5l1yfORTeRh0VcjsoGpG74R87NiNKF1m0dfYMnuFblaZvKkF9svCYAf2ZkYxoABvK5EwQo=")
+    # res = get_page(1, cookie_dt)
+    # data = json.loads(res)
+    # print(len(data['result']['list']))
+    # cook = "fvlid=1521556861448CIWs9Hohfq; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; sessionip=114.95.225.155; ahpau=1; ref=0%7C0%7C0%7C0%7C2018-04-21+17%3A34%3A08.993%7C2018-04-01+23%3A04%3A32.132; __RequestVerificationToken_L3Bhc3Nwb3J00=ggjuVz2L55YsaC-6Ma2mr-0lcVFcN35X_PVRH3jt4Ak14dD2FDZ8R72VQQG0PKIe4F0MLgb9Mw3q2b7Ie3AcIPgF0l01; ahpvno=9; ahrlid=1524377063741NRQl1km0Hv-1524377079722; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=4%2f22%2f2018+2%3a04%3a41+PM; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZpL8BASctiff-v4MHGViOyFZ1ZKdTzTlkkVjaOo2_Lodv30CSnP-sQ0$D73F65556CD811ADE269A0C46978C33B; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqCvximZgNnnBeb+dZ5l1yfORTeRh0VcjsoGpG74R87NiNKF1m0dfYMnuFblaZvKkF9svCYAf2ZkYxoABvK5EwQo="
+    cook = "fvlid=1521556861448CIWs9Hohfq; sessionid=328B27DC-F12F-4B8E-96DE-4FB492E838C5%7C%7C2018-03-20+22%3A41%3A09.296%7C%7C0; area=310199; ahpau=1; __RequestVerificationToken_L3Bhc3Nwb3J00=ggjuVz2L55YsaC-6Ma2mr-0lcVFcN35X_PVRH3jt4Ak14dD2FDZ8R72VQQG0PKIe4F0MLgb9Mw3q2b7Ie3AcIPgF0l01; login_%e5%be%b7%e8%be%be%e6%b1%bd%e8%bd%a6=4%2f22%2f2018+2%3a04%3a41+PM; MCH_Auth=JfVTJiuf8LqwBnaHO1eQMOfEKlOJBmG7DOjcNrOCHao1Nb3JlaPP5iL7Xe39w2U0v4QrA7KexZpL8BASctiff-v4MHGViOyFZ1ZKdTzTlkkVjaOo2_Lodv30CSnP-sQ0$D73F65556CD811ADE269A0C46978C33B; DealerUniqueLoginInfo=kaOtLOVksdvB33I7q1hmqCvximZgNnnBeb+dZ5l1yfORTeRh0VcjsoGpG74R87NiNKF1m0dfYMnuFblaZvKkF9svCYAf2ZkYxoABvK5EwQo=; sessionip=180.175.14.105; sessionvid=06F09F9B-73CA-4481-9E1B-17441F0F53A4; precurrent=; ahpvno=14; ref=0%7C0%7C0%7C0%7C2018-04-22+15%3A08%3A41.358%7C2018-04-01+23%3A04%3A32.132"
+    main_tmp(cook)
+    # cook = sys.argv[1]
+    # run_forever(main_tmp(cook))
+
