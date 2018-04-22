@@ -180,7 +180,7 @@ def main(cookie):
             sys.exit()
     else:
         try:
-            cookie, filename = cookie
+            filename, cookie = cookie
             setting.yiche_username = filename
             start(cookie, History(filename))
         except:

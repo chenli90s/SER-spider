@@ -122,7 +122,7 @@ def start_tmp(cookie, history):
 
 def main_tmp(cookie):
     try:
-        cookie, filename = cookie
+        filename, cookie = cookie
         setting.carhome_username = filename
         start_tmp(cookie, History(filename))
     except:

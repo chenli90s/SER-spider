@@ -148,7 +148,7 @@ def main(cookie):
             sys.exit()
     else:
         try:
-            cookie, filename = cookie
+            filename, cookie = cookie
             setting.icar_username = filename
             start(cookie, History(filename))
         except:
