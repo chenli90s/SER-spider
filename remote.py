@@ -59,18 +59,22 @@ def send_msg(err):
     msg['From'] = 'Spider'
     msg['To'] = Header('管理员')
     smtpObj = smtplib.SMTP_SSL('smtp.qq.com', 465)
-    smtpObj.login('admin@chenli90s.cn', 'ydnwekqncemuffjj')
+    smtpObj.login('admin@chenli90s.cn', 'iokwyswfnajqhgaj')
     smtpObj.sendmail('admin@chenli90s.cn', E_MAIL, msg.as_string())
+# iokwyswfnajqhgaj
 
+import datetime
 def get(name, count):
     # msg = '%s更新了%d'%(count, name)
     E = objectify.ElementMaker(annotate=False)
-    anno_tree = E.request(E.key('1602d45596492ee231fa9bfeadb2e168'), E.filename(name))
+    anno_tree = E.request(E.key('1602d45596492ee231fa9bfeadb2e168'), E.file(name), E.retcode('0000'), E.datetime(str(int(datetime.datetime.now().timestamp()))))
     data = etree.tostring(anno_tree).decode()
+    # print(data)
     resp = requests.post(CALLBACK_URL, data=data)
     if resp.status_code == 200:
         return resp.text
 
 
 if __name__ == '__main__':
-    send('haha')
+    # get('sss', 1)
+    send('test')

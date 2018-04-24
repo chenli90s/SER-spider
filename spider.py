@@ -22,7 +22,7 @@ def run_forever(func, cookie):
             # try:
             #     qun.get(block=True, timeout=1)
             # except:
-            time.sleep(30)
+            time.sleep(1)
             pass
     except:
         pass
