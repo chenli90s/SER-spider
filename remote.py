@@ -50,7 +50,7 @@ def send(title):
     msg['From'] = 'Spider'
     msg['To'] = Header('管理员')
     smtpObj = smtplib.SMTP_SSL('smtp.qq.com', 465)
-    smtpObj.login('admin@chenli90s.cn', 'dpnrgroavcuoichj')
+    smtpObj.login('admin@chenli90s.cn', 'iokwyswfnajqhgaj')
     smtpObj.sendmail('admin@chenli90s.cn', E_MAIL, msg.as_string())
 
 def send_msg(err):
