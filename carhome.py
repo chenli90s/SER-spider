@@ -158,18 +158,18 @@ import setting
 def iter_page(cook, page_size, history):
     file_name = setting.carhome_username+'_autohome_%s.csv' % datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
-        f.write('客户姓名' + ','
-                + '客户号码' + ","
-                + '来电归属' + ","
-                + '归属店铺' + ","
-                + '线索获得时间' + ","
-                + '上牌地区' + ","
-                + '线索状态' + ","
-                + '线索类型' + ","
-                + '商业产品来源	' + ","
-                + '负责销售	' + ","
-                + '线索意向车型	' + ","
-                + ',\n')
+        # f.write('客户姓名' + ','
+        #         + '客户号码' + ","
+        #         + '来电归属' + ","
+        #         + '归属店铺' + ","
+        #         + '线索获得时间' + ","
+        #         + '上牌地区' + ","
+        #         + '线索状态' + ","
+        #         + '线索类型' + ","
+        #         + '商业产品来源	' + ","
+        #         + '负责销售	' + ","
+        #         + '线索意向车型	' + ","
+        #         + ',\n')
         for i in range(page_size):
             flag = parse_page(get_page(i+1, cook), history, f)
             if flag:
@@ -209,18 +209,19 @@ def parse_page(content, history, f):
                 SpecNameStr = '未标注'
             log.info("%s %s %s" % (name, phone, datetimes))
             if history.vild_carhome(datetimes):
-                f.write(name + ','
-                        + phone + ","
-                        + local + ","
-                        + shop + ","
-                        + datetimes + ","
-                        + LicenseCityStr + ","
-                        + ordstatus + ","
-                        + ordtype + ","
-                        + proname + ","
-                        + SalesNameStr + ","
-                        + SpecNameStr +
-                        ',\n')
+                # f.write(name + ','
+                #         + phone + ","
+                #         + local + ","
+                #         + shop + ","
+                #         + datetimes + ","
+                #         + LicenseCityStr + ","
+                #         + ordstatus + ","
+                #         + ordtype + ","
+                #         + proname + ","
+                #         + SalesNameStr + ","
+                #         + SpecNameStr +
+                #         ',\n')
+                f.write("%s, %s, %s,\n" % (name, phone, datetimes))
                 history.index += 1
             else:
                 return True

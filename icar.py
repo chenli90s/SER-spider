@@ -81,8 +81,8 @@ from setting import crawl_delay
 import setting
 def iter_item(cook, page_size, history):
     file_name = setting.icar_username+'_xcar_%s.csv' % datetime.now().strftime(history.formats)
-    with open(file_name, 'wb') as f:
-        f.write('类型, 姓名, 联系方式, 上牌城市, 意向车型, 订单产生时间, 负责销售, 分配时间, \n'.encode())
+    with open(file_name, 'w', encoding='utf-8') as f:
+        # f.write('类型, 姓名, 联系方式, 上牌城市, 意向车型, 订单产生时间, 负责销售, 分配时间, \n')
         for i in range(page_size):
             content = getPage(cook, i+1)
             flag = ''
@@ -123,8 +123,9 @@ def parse_page(content, history, f):
         create_dt = " ".join(line.xpath('./td[9]/text()'))
         if history.vild_icar(datetime):
             log.info("%s %s %s" % (name, phone, datetime))
-            strf = "%s, %s, %s,%s, %s, %s,%s, %s,\n"%(type, name, phone,city,hope_car, datetime, leader,create_dt)
-            f.write(strf.encode())
+            # strf = "%s, %s, %s,%s, %s, %s,%s, %s,\n"%(type, name, phone,city,hope_car, datetime, leader,create_dt)
+            strf = "%s, %s, %s,\n"%(name, phone, datetime)
+            f.write(strf)
             history.index += 1
         else:
             return True

@@ -67,8 +67,8 @@ def start(cookie, history):
     # parse_page(getPage(cookies, 5))
     file_name = setting.yiche_username+'_yichehuoban_%s.csv'%datetime.now().strftime(history.formats)
     with open(file_name, 'w') as f:
-        row = "意向购买度, 性别, 年龄, 意向车型, 姓名, 电话, 归属,建卡状态,线索负责人,线索获得时间, 线索类型, 跟进人, 意向车型, 操作,\n "
-        f.write(row)
+        # row = "意向购买度, 性别, 年龄, 意向车型, 姓名, 电话, 归属,建卡状态,线索负责人,线索获得时间, 线索类型, 跟进人, 意向车型, 操作,\n "
+        # f.write(row)
         run_spider(cookies, history, f)
     # todo: 上传并通知
     if history.index>0:
@@ -156,9 +156,10 @@ def parse_page(context, history, f):
         ent = tr.xpath('./td[8]/a[1]/text()')[0]
         if history.vild_yiche(datetimes):
             log.info("%s %s %s" % (name, phone, datetimes))
-            f.write("%s,%s, %s, %s,%s,%s, %s, %s,%s,%s, %s, %s,%s,%s,\n"%(customers_1,
-                                                                              customers_2, customers_3,
-                                                                              customers_4,name,phone,local,card_type,leader,datetimes,type,so_leader,want_type,ent))
+            # f.write("%s,%s, %s, %s,%s,%s, %s, %s,%s,%s, %s, %s,%s,%s,\n"%(customers_1,
+            #                                                                   customers_2, customers_3,
+            #                                                                   customers_4,name,phone,local,card_type,leader,datetimes,type,so_leader,want_type,ent))
+            f.write("%s, %s, %s,\n" % (name, phone, datetimes))
             history.index +=1
         else:
             return True
